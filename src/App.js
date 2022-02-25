@@ -1,51 +1,31 @@
-import React, {useState} from 'react';
-import Header from './components/Header';
-import ItemTemplate from './components/ItemTemplate';
-import {createGlobalStyle} from 'styled-components'
-import Slider from './components/Slider';
-import Card from './components/Card';
-import Detail from './components/Detail';
-import Data from './data'
-import Cart from './components/Cart';
-import { Link, Route, Switch } from 'react-router-dom'
+import React, { useState } from 'react';
+import HomePage from './pages/HomePage';
+import CartPage from './pages/CartPage';
+import DetailPage from './pages/DetailPage';
+import GlobalStyle from "./styles/GlobalStyles"
+import { Route, Switch } from 'react-router-dom'
 
 
-
-const GlobalStyle = createGlobalStyle`
-body {
-  background: #e9ecef
-}
-`;
-
+// 라우터 셋팅이 가장 main 역할
+// 전체적으로 셋팅르 해줘야하는 것들.
 function App() {
-  let [itemDetail, setItemDetail] = useState(Data)
-  
-    return (
-
+  return (
     <div className='App'>
+      <GlobalStyle />
       <Switch>
-
-        <Route exact path ="/">
-            <GlobalStyle />
-          <Header/>
-          <Slider />
-          <ItemTemplate><Card /></ItemTemplate>
-          </Route>
-
-          <Route path ="/detail/:id">
-          <GlobalStyle/>
-          <Header/>
-          <Detail itemDetail={itemDetail}></Detail>
-          </Route>
-
-          <Route path="/cart">
-            <Header/>
-            <Cart/>
-          </Route>
-          </Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route path="/detail/:id">
+          <DetailPage />
+        </Route>
+        <Route path="/cart">
+          <CartPage />
+        </Route>
+      </Switch>
     </div>
   );
-          
+
 }
 
 export default App;
