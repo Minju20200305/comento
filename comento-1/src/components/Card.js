@@ -1,6 +1,9 @@
 import React, {useState} from "react";
 import styled, {css} from "styled-components"
+import { useHistory, useParams } from "react-router-dom";
 import Data from '../data'
+import { Link, Route, Switch } from 'react-router-dom'
+import axios from 'axios'
 
 const ImgModule = styled.img`
     width: 200px;
@@ -22,25 +25,33 @@ const TextModule = styled.div`
 function Card() {
     let [item, setItem] = useState(Data);
 
+
     return  (
         <div className ="Container">
             {
                 item.map((a, i)=>{
-                    return   <CardItem item={item[i]} i={i} />
+                    return    <CardItem item={item[i]} i={i}/>
                 })
             }
+
     </div>)}
 
 
 
 
 function CardItem(props){
+    let history =useHistory();
     return (
-        <div className="CardItem">
+    
+
+        <div className="CardItem" onClick={()=>{history.push('/detail/'+ props.item.id)}}>
+            {/* <a href={"/detail/`${props.item.id}`"}> */}
+            {/* 태그 네임으로 어떻게 스타일드 컴포넌트 쓰지 */}
         <ImgModule src={props.item.img} /> 
-        {/* 이거 왜 안 됨?? 이렇게 쓰는거 아닌가?  */}
         <TextModule><h4>{props.item.title}</h4></TextModule>
         <TextModule><p>{props.item.content}</p></TextModule>
+        {/* </a>   */}
+        
     </div>
     )
 }

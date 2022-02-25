@@ -1,0 +1,33 @@
+.wrapper{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px; 
+}
+nav {
+    overflow: hidden;
+    display: flex;
+    width: 390px;
+    background: white;
+    height: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+nav > div {
+    text-align: center;
+    float: left;
+    width: 50%;
+
+
+    height: 45px;
+    line-height: 45px;
+}
+
+.nav-item{
+    color: grey
+}
+.active{
+color: purple;
+}
